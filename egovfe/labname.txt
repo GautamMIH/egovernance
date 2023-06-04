@@ -1,0 +1,26 @@
+lab 4 _ searching and displaying the following info
+customer
+customer bill
+customer payment against bill
+
+
+
+lab 5 - displaying customer information and payment
+view customer
+customer Name:
+Address:
+Phone:
+DOB:
+Demand Type: 15A
+Register at: Lagankhel Branch
+
+
+
+lab 6 - making login/logout: session handling
+ 
+
+lab 7 - wrapping of the project, final testing
+customer can only view details with SCNO, phone and DOB
+
+
+

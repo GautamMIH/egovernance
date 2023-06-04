@@ -1,0 +1,16 @@
+*{
+   text-align: center;
+}
+
+
+
+.center td{
+    text-align: left;
+    width: auto;
+}
+
+.center{
+    margin:auto;
+    margin-bottom: 20px;
+    align-items: center;
+}

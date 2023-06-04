@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Add Demand Type</title>
+</head>
+<body>
+  <h2>Add Demand Type</h2>
+  <form action="http://localhost/newgpt/demandtype_insert.php" method="POST">
+
+    <label>Description:</label>
+    <input type="text" name="Description" required><br><br>
+    <label>Status:</label>
+    <select id="Status" name="Status">
+      <option value="1">enabled</option>
+      <option value="0">disabled</option>
+    </select>
+    <br>
+    <input type="submit" value="Submit">
+  </form>
+</body>
+</html>
