@@ -1,2 +1,17 @@
 # egovernance
 project repository for NEA billing system
+
+
+Requires composer installed.
+
+//in the egovbe folder
+composer init
+composer require paypal/paypal-http-client
+
+//if its still doesn't work
+composer dump-autoload
+
+
+
+
+with the nea.sql file in the essential folder, create a database named nea in your dbms and import the file. The file also contains some necessary data
