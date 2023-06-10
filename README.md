@@ -1,15 +1,18 @@
 # egovernance
 project repository for NEA billing system
 
+egovbe should be inside htdocs
+egovfe can be anywhere
+
 
 Requires composer installed.
 
-//in the egovbe folder
-composer init
-composer require paypal/paypal-http-client
+open the egov folder in vscode, open a terminal and run
+1. composer init
+2. composer require paypal/paypal-http-client
 
-//if its still doesn't work
-composer dump-autoload
+if its still doesn't work
+1. composer dump-autoload
 
 
 
