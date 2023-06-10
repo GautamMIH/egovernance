@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jun 04, 2023 at 01:30 PM
+-- Generation Time: Jun 10, 2023 at 10:57 AM
 -- Server version: 10.4.27-MariaDB
 -- PHP Version: 8.0.25
 
@@ -35,8 +35,19 @@ CREATE TABLE `bill` (
   `CUSID` int(11) DEFAULT NULL,
   `Current_Reading` int(11) DEFAULT NULL,
   `Prev_reading` int(11) DEFAULT NULL,
-  `Bamount` int(11) DEFAULT NULL
+  `Bamount` int(11) DEFAULT NULL,
+  `payment_status` tinyint(1) DEFAULT NULL,
+  `payment_id` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `bill`
+--
+
+INSERT INTO `bill` (`BID`, `BDate`, `BYear`, `BMonth`, `CUSID`, `Current_Reading`, `Prev_reading`, `Bamount`, `payment_status`, `payment_id`) VALUES
+(4, '2023-06-07', '2023', 'May', 12312, 500, 600, 5000, 1, NULL),
+(5, '2023-06-14', '2023', 'March', 12312, 4000, 5000, 132123, 1, NULL),
+(8, '2023-06-23', '2016', 'March', 12312, 1231231231, 123123, 30000, 1, 4);
 
 -- --------------------------------------------------------
 
@@ -49,6 +60,18 @@ CREATE TABLE `branch` (
   `Name` varchar(50) DEFAULT NULL,
   `Status` tinyint(4) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `branch`
+--
+
+INSERT INTO `branch` (`Branch_ID`, `Name`, `Status`) VALUES
+(1, 'balaju', 1),
+(234539, 'kathmandu', 1),
+(234540, 'koteshor', 1),
+(234541, 'Bhupesh', 1),
+(234542, 'bishal', 1),
+(234543, 'kathmandu', 1);
 
 -- --------------------------------------------------------
 
@@ -67,6 +90,19 @@ CREATE TABLE `customer` (
   `dob` date DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
+--
+-- Dumping data for table `customer`
+--
+
+INSERT INTO `customer` (`SCNO`, `CUSID`, `FullName`, `Address`, `MobileNo`, `Branch_ID`, `Demand_type_ID`, `dob`) VALUES
+(1, 1, 'abhijeet pandey', 'ghattaghar', '091749872', 234539, 124, NULL),
+(89, 9, 'hari', 'ktm', '90000', 1, 124, NULL),
+(77, 88, 'Bhupesh Upadhyaya', 'koteshwor-34', '998844', 234541, 124, NULL),
+(123, 12312, 'hari', 'lokanthali', '9898234', 1, 124, NULL),
+(0, 12313, ' bishal pahari', 'maitighar', '9812222222', 234540, 124, '1997-07-25'),
+(NULL, 12314, ' bishal pahari', 'maitighar', '9812222222', 234540, 124, '1997-07-25'),
+(NULL, 12315, 'Bishal Budhakshetri', 'Taplejung', '9823677799', 234539, 124, '2023-06-05');
+
 -- --------------------------------------------------------
 
 --
@@ -78,6 +114,13 @@ CREATE TABLE `demandtype` (
   `Description` varchar(100) DEFAULT NULL,
   `Status` tinyint(4) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `demandtype`
+--
+
+INSERT INTO `demandtype` (`Demand_Type_ID`, `Description`, `Status`) VALUES
+(124, '5A', 1);
 
 -- --------------------------------------------------------
 
@@ -92,6 +135,13 @@ CREATE TABLE `demand_rate` (
   `effective_date` date DEFAULT NULL,
   `issuement` tinyint(1) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `demand_rate`
+--
+
+INSERT INTO `demand_rate` (`ID`, `Demand_Type_ID`, `rate`, `effective_date`, `issuement`) VALUES
+(3, 124, 1234, '0000-00-00', 0);
 
 -- --------------------------------------------------------
 
@@ -109,6 +159,14 @@ CREATE TABLE `payment` (
   `Fine_Amt` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
+--
+-- Dumping data for table `payment`
+--
+
+INSERT INTO `payment` (`PID`, `BID`, `PDate`, `PAmount`, `POID`, `Rebeat_Amt`, `Fine_Amt`) VALUES
+(4, 4, '2023-06-01', 123, 11, 123, 123),
+(5, 5, '2023-06-20', 123, 11, 123123, 123);
+
 -- --------------------------------------------------------
 
 --
@@ -120,6 +178,14 @@ CREATE TABLE `payment_option` (
   `Name` varchar(50) DEFAULT NULL,
   `Status` tinyint(4) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `payment_option`
+--
+
+INSERT INTO `payment_option` (`POID`, `Name`, `Status`) VALUES
+(11, 'esewa', 1),
+(12, 'kathmandu', 1);
 
 --
 -- Indexes for dumped tables
@@ -181,43 +247,43 @@ ALTER TABLE `payment_option`
 -- AUTO_INCREMENT for table `bill`
 --
 ALTER TABLE `bill`
-  MODIFY `BID` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `BID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT for table `branch`
 --
 ALTER TABLE `branch`
-  MODIFY `Branch_ID` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `Branch_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=234544;
 
 --
 -- AUTO_INCREMENT for table `customer`
 --
 ALTER TABLE `customer`
-  MODIFY `CUSID` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `CUSID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12316;
 
 --
 -- AUTO_INCREMENT for table `demandtype`
 --
 ALTER TABLE `demandtype`
-  MODIFY `Demand_Type_ID` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `Demand_Type_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=125;
 
 --
 -- AUTO_INCREMENT for table `demand_rate`
 --
 ALTER TABLE `demand_rate`
-  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `payment`
 --
 ALTER TABLE `payment`
-  MODIFY `PID` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `PID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT for table `payment_option`
 --
 ALTER TABLE `payment_option`
-  MODIFY `POID` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `POID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- Constraints for dumped tables

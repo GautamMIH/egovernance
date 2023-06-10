@@ -3,6 +3,7 @@
 <head>
     <title>Search Customer</title>
     <link rel="stylesheet" href="style.css" type="text/css">
+    <script src="https://www.paypal.com/sdk/js?client-id=Ac4Cw-WEpZx6fxQv0X2bSrdrmFuPnVyhZOfhShxJbrPPB1NQsaVPnM3KxC7pBNp7yNzlINzeItGndo8m"></script>
 </head>
 <body>
 
@@ -14,7 +15,16 @@
     <input type="submit" name="submit" value="Search Customer">
 </form>
 <?php
+
+
 include("dbconnect.php");
+
+// PayPal API credentials
+$paypalClientID = "AWI6y3MLgRctZy40Yv8OwmKJNhij_UiYt1qjAPBvKXURNddZF7CcNpNw9FPW_DhbxRwWkLYWkd9sSmtW";
+$paypalSecret = "EIgK61Hnsb971ii8mefbaJfPfzALWcoJrzmlISzoBqW7Lo4SCEE5gcWryJSDQkJgeqSyArXDLX3SqTa1";
+$paypalMode = "sandbox"; // Set to "live" for production
+
+
 // Process the form submission
 if (isset($_POST['submit'])) {
     $cusid = $_POST['cusid'];
@@ -84,7 +94,7 @@ if (isset($_POST['submit'])) {
 
       echo"<hr>";
       // Show Bill Data
-      $querybill = "SELECT BID,BYear, BMonth,Current_Reading,Prev_Reading, Bamount FROM bill WHERE CUSID='$cusid'";
+      $querybill = "SELECT BID,BYear, BMonth,Current_Reading,Prev_Reading, Bamount,payment_status FROM bill WHERE CUSID='$cusid'";
       $result = mysqli_query($conn, $querybill);
       if (mysqli_num_rows($result) > 0) {
       $myarray = array();
@@ -97,6 +107,7 @@ if (isset($_POST['submit'])) {
         <td> Bill Month </td>
         <td> Current Readings</td>
         <td> Previous Readings</td>
+        <td>Payment Status</td>
       </tr>
       
       
@@ -111,6 +122,7 @@ if (isset($_POST['submit'])) {
         $BMonth = $row['BMonth'];
         $CReading = $row['Current_Reading'];
         $PReading = $row['Prev_Reading'];
+        $Pstatus = $row['payment_status'];
 
         echo "
           <tr>
@@ -120,8 +132,13 @@ if (isset($_POST['submit'])) {
             <td> $BMonth </td> 
             <td> $CReading</td> 
             <td> $PReading</td> 
-          </tr>
           ";
+        if($Pstatus == 1){
+          echo"<td>PAID<td></tr>";
+        }
+        elseif($Pstatus != 1){
+         echo"<td>UNPAID</td></tr>";
+        }
 
 
         
@@ -181,5 +198,6 @@ if (isset($_POST['submit'])) {
       echo "</table>";
     }
       ?>
+     
 </body>
 </html>
