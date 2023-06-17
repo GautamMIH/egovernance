@@ -25,7 +25,7 @@ $amount = $_POST['amount'];
 
 
 // Create PayPal order request
-$returnUrl = 'http://localhost/egovbe/success.php?bid=' . urlencode($bid);
+$returnUrl = 'http://localhost/egovbe/success.php?bid=' . urlencode($bid).'&amt='.urlencode($amount);
 $request = new OrdersCreateRequest();
 $request->prefer('return=representation');
 $request->body = [
