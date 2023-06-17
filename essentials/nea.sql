@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jun 10, 2023 at 10:57 AM
+-- Generation Time: Jun 17, 2023 at 12:47 PM
 -- Server version: 10.4.27-MariaDB
 -- PHP Version: 8.0.25
 
@@ -47,7 +47,8 @@ CREATE TABLE `bill` (
 INSERT INTO `bill` (`BID`, `BDate`, `BYear`, `BMonth`, `CUSID`, `Current_Reading`, `Prev_reading`, `Bamount`, `payment_status`, `payment_id`) VALUES
 (4, '2023-06-07', '2023', 'May', 12312, 500, 600, 5000, 1, NULL),
 (5, '2023-06-14', '2023', 'March', 12312, 4000, 5000, 132123, 1, NULL),
-(8, '2023-06-23', '2016', 'March', 12312, 1231231231, 123123, 30000, 1, 4);
+(8, '2023-06-23', '2016', 'March', 12312, 1231231231, 123123, 30000, 1, 4),
+(9, '2023-06-21', '2019', 'July', 12312, 9000, 98000, 123123, 1, 99);
 
 -- --------------------------------------------------------
 
@@ -165,7 +166,9 @@ CREATE TABLE `payment` (
 
 INSERT INTO `payment` (`PID`, `BID`, `PDate`, `PAmount`, `POID`, `Rebeat_Amt`, `Fine_Amt`) VALUES
 (4, 4, '2023-06-01', 123, 11, 123, 123),
-(5, 5, '2023-06-20', 123, 11, 123123, 123);
+(5, 5, '2023-06-20', 123, 11, 123123, 123),
+(8, 8, '0000-00-00', 100, 1, 0, 0),
+(10, 9, '0000-00-00', 123123, 1, 0, 0);
 
 -- --------------------------------------------------------
 
@@ -184,8 +187,8 @@ CREATE TABLE `payment_option` (
 --
 
 INSERT INTO `payment_option` (`POID`, `Name`, `Status`) VALUES
-(11, 'esewa', 1),
-(12, 'kathmandu', 1);
+(1, 'paypal', 1),
+(11, 'esewa', 1);
 
 --
 -- Indexes for dumped tables
@@ -247,7 +250,7 @@ ALTER TABLE `payment_option`
 -- AUTO_INCREMENT for table `bill`
 --
 ALTER TABLE `bill`
-  MODIFY `BID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `BID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT for table `branch`
@@ -277,7 +280,7 @@ ALTER TABLE `demand_rate`
 -- AUTO_INCREMENT for table `payment`
 --
 ALTER TABLE `payment`
-  MODIFY `PID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `PID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT for table `payment_option`
